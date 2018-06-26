@@ -1,0 +1,9 @@
+*~
+*.pyc
+.*sw*
+*egg-info
+dist
+.ropeproject
+MANIFEST
+env
+__pycache__/
