@@ -65,7 +65,7 @@ DOWNLOAD_DELAY = 1
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'github_rookie.pipelines.GithubRookiePipeline': 300,
+#   'github_rookie.pipelines.GithubRookiePipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -94,3 +94,4 @@ GITHUB_TRENDING_LANGS = ["", "python", "unknown", "c", "c%23", "c++", "cuda", "d
     "elixir", "erlang", "go", "graphql", "haskell", "java", "javascript", "julia",
     "jupyter-notebook", "llvm", "markdown", "numpy", "objective-c", "objective-c++",
     "powershell", "php", "r", "ruby", "rust", "scala", "shell", "swift", "vim-script"]
+GITHUB_TRENDING_TIME_SCALES = ["daily", "weekly", "monthly"]
