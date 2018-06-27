@@ -1,9 +1,12 @@
 # git-trend
-Crawl & Scraping scripts for Github - Trending
+Crawl & Scraping scripts for Github - Trending, and insert postgres.
 
 ## Installation
 
     pip install -r requirements.txt
+    git clone https://github.com/kota999/pgpipelines
+    cd pgpipelines
+    python setup.py install
 
 ## Usage
 
@@ -53,4 +56,5 @@ Crawl & Scraping scripts for Github - Trending
  + Vim Script
 
 ### Configure
-Replace [GITHUB_TREND_LANGS](github_rookie/settings.py)
+ + Select [GITHUB_TREND_LANGS](github_rookie/settings.py)
+ + Settings postgresql connection and schema, and INSERT-ON and OFF [PG_PIPELINE](github_rookie/settings.py)

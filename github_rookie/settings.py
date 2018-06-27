@@ -64,9 +64,24 @@ DOWNLOAD_DELAY = 1
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#   'github_rookie.pipelines.GithubRookiePipeline': 300,
-#}
+#
+# Setting for pgpipelines
+#
+ITEM_PIPELINES = {
+   'pgpipelines.PgPipeline': 300,
+}
+from dataset import types
+PG_PIPELINE = {
+    'connection': 'postgresql://localhost:5432/postgres',
+    'table_name': 'github_trend',
+    'col': {
+        'name': ('name', types.UnicodeText), 'lang': ('lang', types.UnicodeText),
+        'description': ('description', types.Unicode), 'all_stars': ('all_stars', types.Integer),
+        'forks': ('forks', types.Integer), 'stars': ('stars', types.Integer),
+        'timescale': ('timescale', types.Unicode)
+    },
+    'bulksize': 1000
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -89,9 +104,13 @@ DOWNLOAD_DELAY = 1
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+#
+# Setting for git-trend
+#
 GITHUB_TRENDING_URL = "https://github.com/trending/"
-GITHUB_TRENDING_LANGS = ["", "python", "unknown", "c", "c%23", "c++", "cuda", "dockerfile", "dart",
-    "elixir", "erlang", "go", "graphql", "haskell", "java", "javascript", "julia",
-    "jupyter-notebook", "llvm", "markdown", "numpy", "objective-c", "objective-c++",
-    "powershell", "php", "r", "ruby", "rust", "scala", "shell", "swift", "vim-script"]
+GITHUB_TRENDING_LANGS = [""]
+#GITHUB_TRENDING_LANGS = ["", "python", "unknown", "c", "c%23", "c++", "cuda", "dockerfile", "dart",
+    #"elixir", "erlang", "go", "graphql", "haskell", "java", "javascript", "julia",
+    #"jupyter-notebook", "llvm", "markdown", "numpy", "objective-c", "objective-c++",
+    #"powershell", "php", "r", "ruby", "rust", "scala", "shell", "swift", "vim-script"]
 GITHUB_TRENDING_TIME_SCALES = ["daily", "weekly", "monthly"]
