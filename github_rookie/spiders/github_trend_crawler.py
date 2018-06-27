@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from github_rookie.items import GithubTrendItem, GithubTrendRepoItem
+from github_rookie.items import GithubTrendItem
 from github_rookie.settings import GITHUB_TRENDING_URL,  GITHUB_TRENDING_LANGS, GITHUB_TRENDING_TIME_SCALES
 
 import re
@@ -34,17 +34,14 @@ class GithubTrendCrawlerSpider(scrapy.Spider):
         super().__init__()
 
     def parse(self, response):
-        ti = GithubTrendItem()
+        ti = []
         url = response.url
         soup = bs4.BeautifulSoup(response.body.decode(), "html.parser")
         repos = soup.find("ol", {"class": "repo-list"})
         repos = [] if repos is None else repos.findAll("li")
-        ti["lang"] = re.findall(GITHUB_TRENDING_URL + "(.+)?\?since=", url)[0]
-        ti["lang"] = "all languages" if ti["lang"] == "" else ti["lang"]
-        ti["timescale"] = re.findall(GITHUB_TRENDING_URL + ".*?since=(.+)?", url)[0]
-        ti["repos"] = []
+        timescale = re.findall(GITHUB_TRENDING_URL + ".*?since=(.+)?", url)[0]
         for repo in repos:
-            i = GithubTrendRepoItem()
+            i = GithubTrendItem()
             i["name"] = re.sub(r'\A\/', "", repo.find("h3").a["href"])
             i["description"] = repo.find("div", {"class": "py-1"}).text.strip()
             lang_elm = repo.find("span", {"itemprop": "programmingLanguage"})
@@ -56,6 +53,7 @@ class GithubTrendCrawlerSpider(scrapy.Spider):
             stars_elm = repo.find("span", {"class": "float-sm-right"})
             stars_elm = None if stars_elm is None else re.findall(r'(.+)? stars', stars_elm.text.strip())
             i["stars"] = 0 if stars_elm is None or len(stars_elm) == 0 else int(stars_elm[0].replace(",", ""))
-            ti["repos"].append(i)
+            i["timescale"] = timescale
+            ti.append(i)
         return ti
 
