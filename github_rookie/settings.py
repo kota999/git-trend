@@ -108,9 +108,8 @@ PG_PIPELINE = {
 # Setting for git-trend
 #
 GITHUB_TRENDING_URL = "https://github.com/trending/"
-GITHUB_TRENDING_LANGS = [""]
-#GITHUB_TRENDING_LANGS = ["", "python", "unknown", "c", "c%23", "c++", "cuda", "dockerfile", "dart",
-    #"elixir", "erlang", "go", "graphql", "haskell", "java", "javascript", "julia",
-    #"jupyter-notebook", "llvm", "markdown", "numpy", "objective-c", "objective-c++",
-    #"powershell", "php", "r", "ruby", "rust", "scala", "shell", "swift", "vim-script"]
+GITHUB_TRENDING_LANGS = ["", "python", "unknown", "c", "c%23", "c++", "cuda", "dockerfile", "dart",
+    "elixir", "erlang", "go", "graphql", "haskell", "java", "javascript", "julia",
+    "jupyter-notebook", "llvm", "markdown", "numpy", "objective-c", "objective-c++",
+    "powershell", "php", "r", "ruby", "rust", "scala", "shell", "swift", "vim-script"]
 GITHUB_TRENDING_TIME_SCALES = ["daily", "weekly", "monthly"]
