@@ -34,7 +34,7 @@ RUN pyenv version
 # conda update
 RUN echo y | conda update conda
 # pip upgrade
-EUN echo y | pip install --upgrade pip
+RUN echo y | pip install --upgrade pip
 
 #
 # install requirements for scrapig
