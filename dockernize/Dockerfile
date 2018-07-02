@@ -1,6 +1,6 @@
 FROM pritunl/archlinux
-MAINTAINER kota999 <kota99949@gmail.com>
 #FROM serverless-crawler
+MAINTAINER kota999 <kota99949@gmail.com>
 
 #
 # set HOME
@@ -36,11 +36,11 @@ RUN echo y | conda update conda
 # pip upgrade
 RUN echo y | pip install --upgrade pip
 
-#
+
 # install requirements for scrapig
-#
+
+RUN echo y | pip install dataset --ignore-installed
 RUN echo y | conda install beautifulsoup4 scrapy sqlalchemy psycopg2
-RUN echo y | pip install dataset
 
 #
 # install scrapig scripts
@@ -52,8 +52,8 @@ COPY settings.py ${HOME}/git-trend/github_rookie/settings.py
 ADD scrape /usr/local/sbin/
 
 #
-# clean trash
-#
+## clean trash
+##
 RUN rm -rf /var/cache/pacman/pkg/* /var/lib/pacman/local/* /var/lib/pacman/sync/* ${HOME}/.cache/pip/*
 
 CMD ["/usr/local/sbin/scrape"]
