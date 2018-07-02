@@ -21,6 +21,16 @@ Crawl & Scraping scripts for Github - Trending, and insert postgres.
     #               keyword combination is ","
     #               ex) timescale=daily,weekly: crawl for daily and weekly trending
 
+## Dockernize
+
+    cp ./github_rookie/settings.py dockernize/settings.py
+    cd ./dockernize
+    # if want to set crawling conf, edit ./dockernize/scrape
+    # Docker Build
+    docker build -t serverless-crawler .
+    # Docker Run
+    docker run -it serverless-crawler
+
 ## Crawl Language
  + All Language
  + UnKnown Language

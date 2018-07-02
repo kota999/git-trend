@@ -1,0 +1,3 @@
+#!/bin/bash
+cd ~/git-trend
+scrapy crawl github_trend_crawler -o output.jl -a timescale=daily
