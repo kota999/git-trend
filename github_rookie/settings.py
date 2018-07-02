@@ -75,7 +75,7 @@ PG_PIPELINE = {
     'connection': 'postgresql://localhost:5432/postgres',
     'table_name': 'github_trend',
     'col': {
-        'name': ('name', types.UnicodeText), 'lang': ('lang', types.UnicodeText),
+        'name': ('name', types.UnicodeText), 'category': ('category', types.UnicodeText), 'lang': ('lang', types.UnicodeText),
         'description': ('description', types.Unicode), 'all_stars': ('all_stars', types.Integer),
         'forks': ('forks', types.Integer), 'stars': ('stars', types.Integer),
         'timescale': ('timescale', types.Unicode)

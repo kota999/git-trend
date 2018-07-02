@@ -43,6 +43,8 @@ class GithubTrendCrawlerSpider(scrapy.Spider):
         for repo in repos:
             i = GithubTrendItem()
             i["name"] = re.sub(r'\A\/', "", repo.find("h3").a["href"])
+            i["category"] = re.findall(GITHUB_TRENDING_URL + "(.+)?\?since=", url)[0]
+            i["category"] = "all languages" if i["category"] is None or i["category"] == "" else i["category"]
             i["description"] = repo.find("div", {"class": "py-1"}).text.strip()
             lang_elm = repo.find("span", {"itemprop": "programmingLanguage"})
             i["lang"] = "Unknown language" if lang_elm is None else lang_elm.text.strip()
