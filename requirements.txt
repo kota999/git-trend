@@ -1,5 +1,2 @@
 BeautifulSoup4
 scrapy
-psycopg2
-sqlalchemy
-dataset

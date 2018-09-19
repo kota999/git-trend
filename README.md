@@ -5,8 +5,9 @@ Crawl & Scraping scripts for Github - Trending, and insert postgres.
 
     pip install -r requirements.txt
     git clone https://github.com/kota999/pgpipelines
-    cd pgpipelines
-    python setup.py install
+    cd pgpipelines && python setup.py install && cd ..
+    git clone https://github.com/kota999/scrapy-dynamodb
+    cd scrapy-dynamodb && python setup.py install && cd ..
 
 ## Usage
 
@@ -23,13 +24,14 @@ Crawl & Scraping scripts for Github - Trending, and insert postgres.
 
 ## Dockernize
 
-    cp ./github_rookie/settings.py dockernize/settings.py
+    # copy customized github-trend to ./dockernize/main/
     cd ./dockernize
     # if want to set crawling conf, edit ./dockernize/scrape
     # Docker Build
-    docker build -t serverless-crawler .
+    cd basei && docker build -t basei . && cd ..
+    cd main && docker build -t github-crawler . && cd ..
     # Docker Run
-    docker run -it serverless-crawler
+    docker run -it github-crawler
 
 ## Crawl Language
  + All Language

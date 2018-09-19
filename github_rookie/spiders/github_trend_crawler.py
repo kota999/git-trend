@@ -5,6 +5,7 @@ from github_rookie.settings import GITHUB_TRENDING_URL,  GITHUB_TRENDING_LANGS, 
 
 import re
 import bs4
+from datetime import datetime
 
 
 class GithubTrendCrawlerSpider(scrapy.Spider):
@@ -56,6 +57,7 @@ class GithubTrendCrawlerSpider(scrapy.Spider):
             stars_elm = None if stars_elm is None else re.findall(r'(.+)? stars', stars_elm.text.strip())
             i["stars"] = 0 if stars_elm is None or len(stars_elm) == 0 else int(stars_elm[0].replace(",", ""))
             i["timescale"] = timescale
+            i["datetime"] = datetime.now()
             ti.append(i)
         return ti
 

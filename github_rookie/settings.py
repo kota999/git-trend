@@ -13,7 +13,9 @@ BOT_NAME = 'github_rookie'
 
 SPIDER_MODULES = ['github_rookie.spiders']
 NEWSPIDER_MODULE = 'github_rookie.spiders'
-
+LOG_LEVEL = 'INFO'  # to only display errors
+LOG_FORMAT = '%(levelname)s: %(message)s'
+# LOG_FILE = 'log.txt'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'github_rookie (+http://www.yourdomain.com)'
@@ -67,21 +69,31 @@ DOWNLOAD_DELAY = 1
 #
 # Setting for pgpipelines
 #
-ITEM_PIPELINES = {
-   'pgpipelines.PgPipeline': 300,
-}
-from dataset import types
-PG_PIPELINE = {
-    'connection': 'postgresql://localhost:5432/postgres',
-    'table_name': 'github_trend',
-    'col': {
-        'name': ('name', types.UnicodeText), 'category': ('category', types.UnicodeText), 'lang': ('lang', types.UnicodeText),
-        'description': ('description', types.Unicode), 'all_stars': ('all_stars', types.Integer),
-        'forks': ('forks', types.Integer), 'stars': ('stars', types.Integer),
-        'timescale': ('timescale', types.Unicode)
-    },
-    'bulksize': 1000
-}
+# ITEM_PIPELINES = {
+   # 'pgpipelines.PgPipeline': 300,
+# }
+# from dataset import types
+# PG_PIPELINE = {
+    # 'connection': 'postgresql://localhost:5432/postgres',
+    # 'table_name': 'github_trend',
+    # 'col': {
+        # 'name': ('name', types.UnicodeText), 'category': ('category', types.UnicodeText), 'lang': ('lang', types.UnicodeText),
+        # 'description': ('description', types.Unicode), 'all_stars': ('all_stars', types.Integer),
+        # 'forks': ('forks', types.Integer), 'stars': ('stars', types.Integer),
+        # 'timescale': ('timescale', types.Unicode)
+    # },
+    # 'bulksize': 1000
+# }
+# ITEM_PIPELINES = {
+    # 'dynamodbPipelines.DynamoDBPipeline': 1,
+# }
+
+# AWS_ACCESS_KEY_ID = '<acc key id>'
+# AWS_SECRET_ACCESS_KEY = '<secret acc key>'
+# DYNAMODB_REGION_NAME = '<region>'
+# DYNAMODB_TABLE_NAME = '<table name>'
+# Optional!
+# DYNAMODB_ENDPOINT_URL = 'http://localhost:8000/'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

@@ -17,3 +17,5 @@ class GithubTrendItem(scrapy.Item):
     forks = scrapy.Field()
     stars = scrapy.Field()
     timescale = scrapy.Field()
+    datetime = scrapy.Field()
+

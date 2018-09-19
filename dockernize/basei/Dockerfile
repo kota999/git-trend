@@ -10,7 +10,8 @@ ENV HOME=/root
 #
 # install requirement library
 #
-RUN echo Y | pacman -S git wget zeromq gcc make tk mesa-libgl texlive-bin readline
+RUN echo Y | pacman -S git wget zeromq gcc make tk readline
+#RUN echo Y | pacman -S git wget zeromq gcc make tk mesa-libgl texlive-bin readline
 
 #
 # install pyenv
@@ -23,37 +24,23 @@ RUN echo "export PATH=\$PATH:\$HOME/.pyenv/bin:\$HOME/.pyenv/shims" >> ${HOME}/.
 RUN echo "eval \"\$(pyenv init -)\"" >> ${HOME}/.bashrc && source ${HOME}/.bashrc
 
 #
-# install anaconda3-4.4.0
+# install python 3.6.6
 #
-RUN pyenv install anaconda3-4.4.0
+RUN pyenv install 3.6.6
 RUN pyenv rehash
 # set using python-distribution
-RUN pyenv global anaconda3-4.4.0
+RUN pyenv global 3.6.6
 # confirm using python version
 RUN pyenv version
-# conda update
-RUN echo y | conda update conda
 # pip upgrade
 RUN echo y | pip install --upgrade pip
 
 
 # install requirements for scrapig
-
-RUN echo y | pip install dataset --ignore-installed
-RUN echo y | conda install beautifulsoup4 scrapy sqlalchemy psycopg2
-
-#
-# install scrapig scripts
-#
-RUN git clone https://github.com/kota999/git-trend.git ${HOME}/git-trend
-RUN git clone https://github.com/kota999/pgpipelines.git ${HOME}/pgpipelines
-RUN cd ${HOME}/pgpipelines && python setup.py install
-COPY settings.py ${HOME}/git-trend/github_rookie/settings.py
-ADD scrape /usr/local/sbin/
+RUN echo y | pip install boto3 beautifulsoup4 scrapy
 
 #
 ## clean trash
 ##
 RUN rm -rf /var/cache/pacman/pkg/* /var/lib/pacman/local/* /var/lib/pacman/sync/* ${HOME}/.cache/pip/*
 
-CMD ["/usr/local/sbin/scrape"]
