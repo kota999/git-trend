@@ -1,4 +1,4 @@
-FROM crawler-basei
+FROM basei
 MAINTAINER kota999 <kota99949@gmail.com>
 
 #
